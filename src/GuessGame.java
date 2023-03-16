@@ -22,27 +22,14 @@ public class GuessGame {
         int numberLimit; //highLimit of number range to guess
         int guess; //the input of the users guess
         int rand; //the random number
-        int guessLimit; //the guess limit dependent on the range to guess from
+
 
         //Get user to input a high limit for guessing
         System.out.println("Enter The High Limit for Range to guess from : 0 to High Limit");
         numberLimit = input.nextInt();
 
         rand = random.nextInt(numberLimit);
-        //set the limit for the number of guesses allowed depending on the high limit of the range
-        guessLimit = 2;
-
-        if (numberLimit >=10 && numberLimit <= 30) {
-            guessLimit = 5;
-        } else if (numberLimit > 30 && numberLimit <= 50) {
-
-            guessLimit = 10;
-        } else if (numberLimit > 50 && numberLimit <= 100) {
-            guessLimit = 15;
-        } else if (numberLimit > 100)
-        {
-            guessLimit = 20;
-        }
+        int guessLimit = calculateGuessLimit(numberLimit);
 
         //inform user of the number of guesses allowed and the range to guess from
         System.out.println("Enter The Number You Think Is Correct between 0 and " + numberLimit + " < " + guessLimit + " Tries Only >");
@@ -73,5 +60,24 @@ public class GuessGame {
             }
         }
 
+    }
+
+    public static int calculateGuessLimit(int numberLimit) {
+        int guessLimit; //the guess limit dependent on the range to guess from
+        //set the limit for the number of guesses allowed depending on the high limit of the range
+        guessLimit = 2;
+
+        if (numberLimit >=10 && numberLimit <= 30) {
+            guessLimit = 5;
+        } else if (numberLimit > 30 && numberLimit <= 50) {
+
+            guessLimit = 10;
+        } else if (numberLimit > 50 && numberLimit <= 100) {
+            guessLimit = 15;
+        } else if (numberLimit > 100)
+        {
+            guessLimit = 20;
+        }
+        return guessLimit;
     }
 }
