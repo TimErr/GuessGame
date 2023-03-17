@@ -13,24 +13,37 @@ import java.util.Random;
     that determines whether to tell the user higher, lower, they found the correct answer, or if they ran out of guesses.
  */
 public class GuessGame {
+    private static Scanner input;
+    private static Random random;
+    private static int numberLimit; //highLimit of number range to guess
+    private static int guessLimit; //the guess limit dependent on the range to guess from
     public static void main(String[] args) {
 
-        Random random = new Random();
-        Scanner input = new Scanner(System.in);
+        setUpTheGame();
 
-        //Set variables for number guess game
-        int numberLimit; //highLimit of number range to guess
-        int guess; //the input of the users guess
-        int rand; //the random number
 
+    }
+
+    public static void setUpTheGame() {
 
         //Get user to input a high limit for guessing
+        input = new Scanner(System.in);
         System.out.println("Enter The High Limit for Range to guess from : 0 to High Limit");
         numberLimit = input.nextInt();
 
-        rand = random.nextInt(numberLimit);
         int guessLimit = calculateGuessLimit(numberLimit);
+        playTheGame(guessLimit, numberLimit);
+    }
 
+    public static void playTheGame(int guessLimit, int numberLimit) {
+        random = new Random();
+        //input = new Scanner(System.in);
+
+        //Set variables for number guess game
+        int rand; //the random number
+        int guess; //the input of the users guess
+
+        rand = random.nextInt(numberLimit);
         //inform user of the number of guesses allowed and the range to guess from
         System.out.println("Enter The Number You Think Is Correct between 0 and " + numberLimit + " < " + guessLimit + " Tries Only >");
 
@@ -39,31 +52,32 @@ public class GuessGame {
 
             guess = input.nextInt();
 
-                if (guess == rand) {
-                    //if guess is correct give a message with the number of guesses it took
-                    if (i == 1)
-                    {
-                        System.out.println("You got the correct answer in " + i + " guess!!");
-                    } else {
-                        System.out.println("You got the correct answer in " + i + " guesses!!");
-                    }
-                    break;
-                } else if (guess < rand) {
-                    System.out.println("Guess Higher");
+            if (guess == rand) {
+                //if guess is correct give a message with the number of guesses it took
+                if (i == 1)
+                {
+                    System.out.println("You got the correct answer in " + i + " guess!!");
                 } else {
-                    System.out.println("Guess Lower");
+                    System.out.println("You got the correct answer in " + i + " guesses!!");
                 }
-                //user ran out of guesses, give the answer
+                break;
+            } else if (guess < rand) {
+                System.out.println("Guess Higher");
+            } else {
+                System.out.println("Guess Lower");
+            }
+            //user ran out of guesses, give the answer
             if (i==guessLimit)
             {
                 System.out.println("You ran out of guesses the number was " + rand);
             }
         }
 
+
     }
 
     public static int calculateGuessLimit(int numberLimit) {
-        int guessLimit; //the guess limit dependent on the range to guess from
+
         //set the limit for the number of guesses allowed depending on the high limit of the range
         guessLimit = 2;
 
