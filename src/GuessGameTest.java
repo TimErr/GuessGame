@@ -1,41 +1,23 @@
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class GuessGameTest {
-    private GuessGame testGuessLimit;
+    private GuessGame testGuessGame;
 
     public void setUp () {
-        testGuessLimit = new GuessGame();
+        testGuessGame = new GuessGame();
     }
     @Test
     //test to see if guess limit calculates correctly using inputs between 10 and 30
-    void guessLimitShouldBeFive () {
+    void testCalculateGuessLimit () {
 
-        assertEquals(5, testGuessLimit.calculateGuessLimit(10));
-        assertEquals(5,testGuessLimit.calculateGuessLimit(30));
-    }
-
-    @Test
-        //test to see if guess limit calculates correctly using inputs between 31 and 50
-    void guessLimitShouldBeTen () {
-
-        assertEquals(10, testGuessLimit.calculateGuessLimit(31));
-        assertEquals(10, testGuessLimit.calculateGuessLimit(50));
-    }
-
-    @Test
-        //test to see if guess limit calculates correctly using inputs between 51 and 100
-    void guessLimitShouldBeFifteen () {
-
-        assertEquals(15, testGuessLimit.calculateGuessLimit(51));
-        assertEquals(15, testGuessLimit.calculateGuessLimit(100));
-    }
-    @Test
-        //test to see if guess limit calculates correctly using inputs higher than 100
-    void guessLimitShouldBeTwenty () {
-
-        assertEquals(20, testGuessLimit.calculateGuessLimit(101));
-        assertEquals(20, testGuessLimit.calculateGuessLimit(1001));
+        assertEquals(5, testGuessGame.calculateGuessLimit(10));
+        assertEquals(5,testGuessGame.calculateGuessLimit(30));
+        assertEquals(10, testGuessGame.calculateGuessLimit(31));
+        assertEquals(10, testGuessGame.calculateGuessLimit(50));
+        assertEquals(15, testGuessGame.calculateGuessLimit(51));
+        assertEquals(15, testGuessGame.calculateGuessLimit(100));
+        assertEquals(20, GuessGame.calculateGuessLimit(101));
+        assertEquals(20, testGuessGame.calculateGuessLimit(1001));
     }
 }

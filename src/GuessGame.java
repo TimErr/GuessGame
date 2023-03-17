@@ -16,34 +16,26 @@ public class GuessGame {
     private static Scanner input;
     private static Random random;
     private static int numberLimit; //highLimit of number range to guess
-    private static int guessLimit; //the guess limit dependent on the range to guess from
+    static int guessLimit; //the guess limit dependent on the range to guess from
     public static void main(String[] args) {
 
-        setUpTheGame();
-
-
-    }
-
-    public static void setUpTheGame() {
-
+        //set up the game
         //Get user to input a high limit for guessing
         input = new Scanner(System.in);
         System.out.println("Enter The High Limit for Range to guess from : 0 to High Limit");
         numberLimit = input.nextInt();
 
         int guessLimit = calculateGuessLimit(numberLimit);
-        playTheGame(guessLimit, numberLimit);
-    }
 
-    public static void playTheGame(int guessLimit, int numberLimit) {
-        random = new Random();
-        //input = new Scanner(System.in);
 
         //Set variables for number guess game
         int rand; //the random number
         int guess; //the input of the users guess
 
+        random = new Random();
+
         rand = random.nextInt(numberLimit);
+
         //inform user of the number of guesses allowed and the range to guess from
         System.out.println("Enter The Number You Think Is Correct between 0 and " + numberLimit + " < " + guessLimit + " Tries Only >");
 
@@ -72,7 +64,6 @@ public class GuessGame {
                 System.out.println("You ran out of guesses the number was " + rand);
             }
         }
-
 
     }
 
