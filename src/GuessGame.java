@@ -53,24 +53,31 @@ public class GuessGame {
                     System.out.println("You got the correct answer in " + i + " guesses!!");
                 }
                 break;
-            } else if (guess < rand) {
+            }
+
+            if (i==guessLimit)  {
+                //user ran out of guesses, give the answer
+                 System.out.println("You ran out of guesses the number was " + rand);
+            } else if (guess < rand)  {
+                //users guess is too high, try again if any guesses left
                 System.out.println("Guess Higher");
             } else {
+                //users guess is too low, try again, if any guesses left
                 System.out.println("Guess Lower");
             }
-            //user ran out of guesses, give the answer
-            if (i==guessLimit)
-            {
-                System.out.println("You ran out of guesses the number was " + rand);
-            }
+
+
         }
 
     }
 
-    public static int calculateGuessLimit(int numberLimit) {
+    public static int calculateGuessLimit(int numberLimit) throws IllegalArgumentException {
 
+        if(numberLimit <1 ){
+            throw new IllegalArgumentException("Number Limit must be greater than or equal to 1");
+        }
         //set the limit for the number of guesses allowed depending on the high limit of the range
-        guessLimit = 2;
+        guessLimit = 1;
 
         if (numberLimit >=10 && numberLimit <= 30) {
             guessLimit = 5;
