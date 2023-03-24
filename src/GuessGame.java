@@ -79,12 +79,16 @@ public class GuessGame {
                 if (Objects.equals(continuePlay, "Y") || Objects.equals(continuePlay, "y") || Objects.equals(continuePlay, "yes") || Objects.equals(continuePlay, "Yes")) {
                     runTheGame();
                 }
-            } else if (guess < rand)  {
-                //users guess is too high, try again if any guesses left
-                System.out.println("Your guess was too low, try a number higher than " + guess);
-            } else {
-                //users guess is too low, try again, if any guesses left
-                System.out.println("Your guess is too high, try a number lower than " + guess);
+
+            }else if (guess > numberLimit) {
+                System.out.println("Your guess is outside the range of 0 to " + numberLimit + ". Please try again.");
+                i = i-- ;
+            }else if (guess < rand && guess <= numberLimit)  {
+                //users guess is too low, try again if any guesses left
+                System.out.println("Your guess was too low, try a number higher than " + guess + ". You have " + (guessLimit - i) +" guesses left.");
+            } else  if (guess > rand && guess <= numberLimit){
+                //users guess is too high, try again, if any guesses left
+                System.out.println("Your guess is too high, try a number lower than " + guess + ". You have " + (guessLimit - i) + " guesses left.");
             }
 
 
