@@ -82,6 +82,11 @@ public class GuessGame {
         input = new Scanner(System.in);
         System.out.println("Enter The High Limit for Range to guess from : 0 to High Limit");
         numberLimit = input.nextInt();
+      while (numberLimit == 0) {
+            System.out.println("Please enter a number greater than or equal to 1");
+            System.out.println("Enter The High Limit for Range to guess from : 0 to High Limit");
+            numberLimit = input.nextInt();
+        }
         return numberLimit;
     }
     /* generateRandomNumber will generate a random number for the high end of the guessing range
@@ -98,11 +103,8 @@ public class GuessGame {
     /* calculateGuessLimit is used to make gameplay realistic for both
      large and small guess ranges. With a minimum of 1 guess and a
      maximum of 20 guesses, dependent on the numberLimit entered by user. */
-    public static int calculateGuessLimit(int numberLimit) throws IllegalArgumentException {
+    public static int calculateGuessLimit(int numberLimit)  {
 
-        if(numberLimit <1 ){
-            throw new IllegalArgumentException("Number Limit must be greater than or equal to 1");
-        }
         //set the limit for the number of guesses allowed depending on the high limit of the range
         guessLimit = 1;
 

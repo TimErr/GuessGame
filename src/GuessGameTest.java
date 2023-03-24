@@ -16,14 +16,8 @@ public class GuessGameTest {
 
     }
 
-    /* function tests */
+    /* functional tests */
 
-    @Test
-    void testCalculateGuessLimitWithNumberLimitLessThanOne() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            GuessGame.calculateGuessLimit(0);
-        });
-    }
 
     @Test
     void testCalculateGuessLimitWithNumberLimitEqualToOne() {
@@ -83,7 +77,6 @@ public class GuessGameTest {
         end = System.currentTimeMillis();
         formatter = new DecimalFormat("#0.00000");
         System.out.println("Execution time for range 0 to 100000 is "+ formatter.format((end - start) / 1000d) + " seconds");
-
 
     }
 
