@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.Random;
 /*
@@ -38,6 +39,7 @@ public class GuessGame {
      */
     private static void tryGuessing(int rand, int guessLimit) {
         int guess; //the input of the users guess
+        String continuePlay;
 
 
         //inform user of the number of guesses allowed and the range to guess from
@@ -53,8 +55,18 @@ public class GuessGame {
                 if (i == 1)
                 {
                     System.out.println("You got the correct answer in " + i + " guess!!");
+                    System.out.println("Would you like to play again? Y or N");
+                    continuePlay = input.next();
+                    if (Objects.equals(continuePlay, "Y") || Objects.equals(continuePlay, "y") || Objects.equals(continuePlay, "yes") || Objects.equals(continuePlay, "Yes")) {
+                        runTheGame();
+                    }
                 } else {
                     System.out.println("You got the correct answer in " + i + " guesses!!");
+                    System.out.println("Would you like to play again? Y or N");
+                    continuePlay = input.next();
+                    if (Objects.equals(continuePlay, "Y") || Objects.equals(continuePlay, "y") || Objects.equals(continuePlay, "yes") || Objects.equals(continuePlay, "Yes")) {
+                        runTheGame();
+                    }
                 }
                 break;
             }
@@ -62,6 +74,11 @@ public class GuessGame {
             if (i==guessLimit)  {
                 //user ran out of guesses, give the answer
                 System.out.println("You ran out of guesses the number was " + rand);
+                System.out.println("Would you like to play again? Y or N");
+                continuePlay = input.next();
+                if (Objects.equals(continuePlay, "Y") || Objects.equals(continuePlay, "y") || Objects.equals(continuePlay, "yes") || Objects.equals(continuePlay, "Yes")) {
+                    runTheGame();
+                }
             } else if (guess < rand)  {
                 //users guess is too high, try again if any guesses left
                 System.out.println("Guess Higher");
