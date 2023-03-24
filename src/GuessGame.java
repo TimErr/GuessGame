@@ -18,23 +18,27 @@ public class GuessGame {
     private static int numberLimit; //highLimit of number range to guess
     static int guessLimit; //the guess limit dependent on the range to guess from
     public static void main(String[] args) {
+        runTheGame();
+    }
 
-        //set up the game
-        //Get user to input a high limit for guessing
-        input = new Scanner(System.in);
-        System.out.println("Enter The High Limit for Range to guess from : 0 to High Limit");
-        numberLimit = input.nextInt();
-
+    private static void runTheGame() {
+        //set up the game with userInput for high range Limit
+        numberLimit = getInputFromUser();
+        //calculate the guessLimit allowed depending on value of numberLimit
         int guessLimit = calculateGuessLimit(numberLimit);
+        //generate the random number
+        int rand = generateRandomNumber(numberLimit);
+        tryGuessing(rand, guessLimit);
+    }
 
-
-        //Set variables for number guess game
-        int rand; //the random number
+    /* the actual meat of the game, user inputs guess and program calculates if correct
+        and provides feedback if too high or too low, if guess is correct, user gets
+        message indicating how many guesses it took. if user ran out of guesses
+        message states what the random number was.
+     */
+    private static void tryGuessing(int rand, int guessLimit) {
         int guess; //the input of the users guess
 
-        random = new Random();
-
-        rand = random.nextInt(numberLimit);
 
         //inform user of the number of guesses allowed and the range to guess from
         System.out.println("Enter The Number You Think Is Correct between 0 and " + numberLimit + " < " + guessLimit + " Tries Only >");
@@ -57,7 +61,7 @@ public class GuessGame {
 
             if (i==guessLimit)  {
                 //user ran out of guesses, give the answer
-                 System.out.println("You ran out of guesses the number was " + rand);
+                System.out.println("You ran out of guesses the number was " + rand);
             } else if (guess < rand)  {
                 //users guess is too high, try again if any guesses left
                 System.out.println("Guess Higher");
@@ -68,9 +72,32 @@ public class GuessGame {
 
 
         }
-
     }
 
+
+    /* getInputFromUser will get input from user for all setup functions*/
+
+    public static int getInputFromUser() {
+        //Get user to input a high limit for guessing
+        input = new Scanner(System.in);
+        System.out.println("Enter The High Limit for Range to guess from : 0 to High Limit");
+        numberLimit = input.nextInt();
+        return numberLimit;
+    }
+    /* generateRandomNumber will generate a random number for the high end of the guessing range
+     params are numberLimit from user input */
+    public static int generateRandomNumber(int numberLimit) {
+        int rand; //the random number
+
+        random = new Random();
+
+        rand = random.nextInt(numberLimit);
+        return rand;
+    }
+
+    /* calculateGuessLimit is used to make gameplay realistic for both
+     large and small guess ranges. With a minimum of 1 guess and a
+     maximum of 20 guesses, dependent on the numberLimit entered by user. */
     public static int calculateGuessLimit(int numberLimit) throws IllegalArgumentException {
 
         if(numberLimit <1 ){

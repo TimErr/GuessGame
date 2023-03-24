@@ -1,5 +1,9 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GuessGameTest {
@@ -11,6 +15,9 @@ public class GuessGameTest {
         guessGame = new GuessGame();
 
     }
+
+    /* function tests */
+
     @Test
     void testCalculateGuessLimitWithNumberLimitLessThanOne() {
         assertThrows(IllegalArgumentException.class, () -> {
@@ -20,7 +27,6 @@ public class GuessGameTest {
 
     @Test
     void testCalculateGuessLimitWithNumberLimitEqualToOne() {
-
         int result = GuessGame.calculateGuessLimit(1);
         assertEquals(1, result);
     }
@@ -54,6 +60,31 @@ public class GuessGameTest {
     public void testCalculateGuessLimitWithNumberGreaterThan100() {
         int result = GuessGame.calculateGuessLimit(200);
         assertEquals(20, result);
+    }
+
+    /* Non-functional tests */
+
+    @Test
+    public void testProcessingSpeedForRandomNumberRanges() {
+        long start = System.currentTimeMillis();
+        int result = GuessGame.generateRandomNumber(1);
+        long end = System.currentTimeMillis();
+        NumberFormat formatter = new DecimalFormat("#0.00000");
+        System.out.println("Execution time for range 0 to 1 is "+ formatter.format((end - start) / 1000d) + " seconds");
+
+        start = System.currentTimeMillis();
+        result = GuessGame.generateRandomNumber(150);
+        end = System.currentTimeMillis();
+        formatter = new DecimalFormat("#0.00000");
+        System.out.println("Execution time for range 0 to 150 is "+ formatter.format((end - start) / 1000d) + " seconds");
+
+        start = System.currentTimeMillis();
+        result = GuessGame.generateRandomNumber(100000);
+        end = System.currentTimeMillis();
+        formatter = new DecimalFormat("#0.00000");
+        System.out.println("Execution time for range 0 to 100000 is "+ formatter.format((end - start) / 1000d) + " seconds");
+
+
     }
 
 }
