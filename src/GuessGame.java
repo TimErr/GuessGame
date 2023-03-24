@@ -81,10 +81,10 @@ public class GuessGame {
                 }
             } else if (guess < rand)  {
                 //users guess is too high, try again if any guesses left
-                System.out.println("Guess Higher");
+                System.out.println("Your guess was too low, try a number higher than " + guess);
             } else {
                 //users guess is too low, try again, if any guesses left
-                System.out.println("Guess Lower");
+                System.out.println("Your guess is too high, try a number lower than " + guess);
             }
 
 
